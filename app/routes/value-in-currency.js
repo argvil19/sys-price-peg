@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
     try {
         sysPrices = await priceCheck.checkSyscoinPrice()
     } catch(err) {
-        console.error(err)
         return res.status(500).send({ error: true, message: 'Internal error' })
     }
 

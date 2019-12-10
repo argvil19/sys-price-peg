@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000
 const indexRouter = require('./routes/index')
 const availableCurrencies = require('./routes/available-currencies')
 const valueInCurrency = require('./routes/value-in-currency')
+const convertCurrency = require('./routes/convert')
 
 const app = express()
 const http = require('http').createServer(app)
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 
 app.get('/', availableCurrencies)
 app.get('/currency', valueInCurrency)
+app.get('/currency/convert', convertCurrency)
 
 setInterval(async () => {
     const sysPrices = await priceCheck.checkSyscoinPrice()
