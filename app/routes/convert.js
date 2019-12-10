@@ -6,6 +6,10 @@ module.exports = async (req, res) => {
     const to = req.query.to
     const amount = Number(req.query.amount)
     let toAmount
+
+    if (from.toLowerCase() === 'usd') {
+        return res.status(400).send('Cant convert USD')
+    }
     
     try {
         toAmount = await priceCheck.convert(amount, from, to)

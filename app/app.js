@@ -11,6 +11,7 @@ const convertCurrency = require('./routes/convert')
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const cors = require('cors')
 
 const PriceCheck = require('./utils/price-check')
 const priceCheck = new PriceCheck()
@@ -19,6 +20,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(cors())
 app.use((req, res, next) => {
     req.io = io
 
